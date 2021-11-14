@@ -1,0 +1,35 @@
+.container {
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    grid-template-rows: 100px 100px 100px;
+    justify-content: center;
+    position: relative;
+    top: 25vh;
+}
+
+.grid:nth-child(-n+6) {
+    border-bottom: #b0b0b0 2px solid;
+}
+
+.grid:nth-child(3n+1) {
+    border-right: #b0b0b0 2px solid;
+}
+
+.grid:nth-child(3n+2) {
+    border-right: #b0b0b0 2px solid;
+}
+
+.grid.circle {
+    background-image: url("../images/circle-regular.svg");
+    background-size: 70px;
+}
+
+.grid.cross {
+    background-image: url("../images/times-solid.svg");
+}
+
+.grid {
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: center;
+}
