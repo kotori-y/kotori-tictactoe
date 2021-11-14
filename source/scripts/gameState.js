@@ -2,31 +2,34 @@
  * @author Kotori Y
  */
 
+function clone(instance) {
+  return Object.assign(
+    Object.create(
+      // Set the prototype of the new object to the prototype of the instance.
+      // Used to allow new object behave like class instance.
+      Object.getPrototypeOf(instance),
+    ),
+    // Prevent shallow copies of nested structures like arrays, etc
+    JSON.parse(JSON.stringify(instance)),
+  );
+}
+
+
 class TicTacToeState {
   constructor(board, currentPlayer) {
     this.board = board
     this.currentPlayer = currentPlayer
-    this.mapping = {
-      1: [0, 0],
-      2: [0, 1],
-      3: [0, 2],
-      4: [1, 0],
-      5: [1, 1],
-      6: [1, 2],
-      7: [2, 0],
-      8: [2, 1],
-      9: [2, 2]
-    }
   }
+}
 
-  takeAction(action) {
-    let newState = Object.assign(Object.create(Object.getPrototypeOf(this)), this)
-    newState.board[action.x][action.y] = this.currentPlayer
-    newState.currentPlayer = this.currentPlayer * -1
-    return newState
-  }
+TicTacToeState.prototype.takeAction = function (action) {
+  let newState = clone(this)
+  newState.board[action.x][action.y] = this.currentPlayer
+  newState.currentPlayer = this.currentPlayer * -1
+  return newState
+}
 
-  isTerminal() {
+TicTacToeState.prototype.isTerminal = function () {
     for (let row of this.board) {
       if (Math.abs(row.reduce((a, b) => a + b)) === 3) {
         return true
@@ -61,7 +64,7 @@ class TicTacToeState {
     })
   }
 
-  getPossibleActions() {
+TicTacToeState.prototype.getPossibleActions = function () {
     const possibleActions = []
     for (let i = 0; i <= 2; i++) {
       for (let j = 0; j <= 2; j++) {
@@ -74,7 +77,7 @@ class TicTacToeState {
     return possibleActions
   }
 
-  getReward() {
+TicTacToeState.prototype.getReward = function () {
     let abs_max = 0, reward = 0
 
     for (let row of this.board) {
@@ -112,7 +115,5 @@ class TicTacToeState {
 
     return reward
   }
-
-}
 
 export default TicTacToeState

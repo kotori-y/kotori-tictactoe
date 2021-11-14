@@ -9,7 +9,7 @@ class TreeNode {
     this.parent = parent
     this.children = {}
 
-    this.isTermianal = state.isTerminal()
+    this.isTerminal = state.isTerminal()
     this.isFullyExpanded = false
     this.n_visited = 0
     this.total_reward = 0

@@ -1,10 +1,14 @@
 .container {
+    position: relative;
+}
+
+.grid-container {
     display: grid;
     grid-template-columns: 100px 100px 100px;
     grid-template-rows: 100px 100px 100px;
-    justify-content: center;
-    position: relative;
-    top: 25vh;
+    /*justify-content: center;*/
+    position: absolute;
+    /*top: 25vh;*/
 }
 
 .grid:nth-child(-n+6) {
@@ -32,4 +36,19 @@
     cursor: pointer;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+.cover {
+    width: 300px;
+    height: 300px;
+    /*display: inline-block;*/
+    z-index: 999;
+    position: absolute;
+    background-color: rgba(170, 162, 162, 0.11);
+    display: none;
+    /*font-size: 190px;*/
+    line-height: 300px;
+    text-align: center;
+    font-weight: bolder;
+    user-select: none;
 }
